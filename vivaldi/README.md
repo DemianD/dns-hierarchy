@@ -119,3 +119,63 @@ dig axfr .
 dig vivaldi.                   # moet 1 answer hebben
 dig test.                      # moet 1 answer hebben
 ```
+
+## Stap 9
+Reverse DNS
+
+/var/named/192.168.16
+
+```
+; reverse DNS zonebestand voor 192.168.16/24
+$TTL    60
+
+@       IN      SOA     vivaldi. demian.hogent.be. (
+                                2018022101         ; serial YYYYMMDDXX
+                                60                 ; refresh
+                                60                 ; retry
+                                60                 ; expire
+                                60 )               ; minimum
+
+        IN      NS      vivaldi.
+
+155     IN      PTR       vivaldi.
+101     IN      PTR       test.
+143     IN      PTR       nielsen.dk.
+```
+
+## Stap 10
+
+/etc/named.conf
+
+Voeg een zone toe
+
+```
+zone "16.168.192.in-addr.arpa" {
+        type master;
+        file "192.168.16";
+};
+```
+
+## Stap 11
+Controle:
+
+```
+named-checkconf
+named-checkzone -i local 16.168.192.in-addr.arpa /var/named/192.168.16
+```
+
+## Stap 12
+Herstarten:
+
+```
+systemctl restart named.service
+```
+
+## Stap 13
+Controle:
+
+```
+host 192.168.16.155
+host 192.168.16.101
+host 192.168.16.143
+```
