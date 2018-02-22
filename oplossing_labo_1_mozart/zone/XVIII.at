@@ -1,0 +1,15 @@
+; zonebestand voor XVIII.at
+$TTL	60
+
+@   IN  SOA mozart.XVIII.at. demian.hogent.be. (
+	            2018021502 	; serial
+                60	   	    ; refresh
+	            60		    ; retry
+	            60		    ; expire
+	            60 )	    ; minimum
+	IN	NS	mozart
+
+mozart		IN	A	192.168.16.141
+
+haydn		IN	A	192.168.16.139
+wagenseil	IN	A	192.168.16.246
