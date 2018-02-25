@@ -5,7 +5,7 @@
 </p>
 
 ## Schema
-![Schema](./.img/schema.png)
+![Schema](./.img/schema.png#2)
 
 ## Debugging
 
