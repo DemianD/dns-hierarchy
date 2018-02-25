@@ -81,7 +81,7 @@ vivaldi.    60    A    192.168.16.155
 
 ```
 $TTL	60
-@       IN      SOA     nielsen.dk. demian.hogent.be. (
+@       IN      SOA     nielsen.dk. demian.ugent.be. (
                                 2018022101         ; serial YYYYMMDDXX
                                 60	   	   ; refresh
                                 60		   ; retry
@@ -97,7 +97,7 @@ nielsen	IN	A	192.168.16.143
 
 ```
 $TTL	60
-@       IN      SOA     nielsen.dk. demian.hogent.be. (
+@       IN      SOA     nielsen.dk. demian.ugent.be. (
                                 2018022101         ; serial YYYYMMDDXX
                                 60	   	   ; refresh
                                 60		   ; retry
@@ -119,7 +119,7 @@ delalande.orchestral        IN  A	192.168.16.128
 
 ```
 $TTL	60
-@       IN      SOA     nielsen.dk. demian.hogent.be. (
+@       IN      SOA     nielsen.dk. demian.ugent.be. (
                                 2018022101         ; serial YYYYMMDDXX
                                 60	   	   ; refresh
                                 60		   ; retry
