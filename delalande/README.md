@@ -1,7 +1,7 @@
 # nielsen
 
-- hostname: nielsen
-- IP-adres: 192.168.16.143
+- hostname: delalande
+- IP-adres: 192.168.16.128
 
 Voer onderstaande commando's uit als root.
 
@@ -49,19 +49,9 @@ zone "." IN {
         file "named.ca";
 };
 
-zone "dk" IN {
+zone "orchestral.fr" IN {
         type master;
-        file "dk";
-};
-
-zone "fr" IN {
-        type master;
-        file "fr";
-};
-
-zone "opera.fr" IN {
-        type master;
-        file "opera.fr";
+        file "orchestral.fr";
 };
 
 include "/etc/named.rfc1912.zones";
@@ -77,101 +67,53 @@ vivaldi.    60    A    192.168.16.155
 ```
 
 ## Stap 4
-/var/named/dk
+/var/named/orchestral.fr
 
 ```
 $TTL	60
-@       IN      SOA     nielsen.dk. demian.ugent.be. (
+@       IN      SOA     delalande.orchestral.fr. demian.ugent.be. (
                                 2018022101         ; serial YYYYMMDDXX
                                 60	   	   ; refresh
                                 60		   ; retry
                                 60		   ; expire
                                 60 )	   	   ; minimum
 
-                NS	nielsen.dk.
-nielsen	IN	A	192.168.16.143
+                        NS	delalande.orchestral.fr.
+delalande	IN	A	192.168.16.128
 ```
 
 ## Stap 5
-/var/named/fr
-
-```
-$TTL	60
-@       IN      SOA     nielsen.dk. demian.ugent.be. (
-                                2018022101         ; serial YYYYMMDDXX
-                                60	   	   ; refresh
-                                60		   ; retry
-                                60		   ; expire
-                                60 )	   	   ; minimum
-
-                            NS	nielsen.dk.
-
-couperin.keyboard           IN	A	192.168.16.74
-
-opera			    IN	NS	nielsen.dk.
-orchestral		    IN	NS	delalande.orchestral
-
-; Deze lijn is zeker nodig. 
-; Dit was mijn fout tijdens het labo
-delalande.orchestral        IN  A	192.168.16.128
-```
-
-## Stap 6
-/var/named/opera.fr
-
-```
-$TTL	60
-@       IN      SOA     nielsen.dk. demian.ugent.be. (
-                                2018022101         ; serial YYYYMMDDXX
-                                60	   	   ; refresh
-                                60		   ; retry
-                                60		   ; expire
-                                60 )	   	   ; minimum
-
-                NS	nielsen.dk.
-
-campra	IN	A	192.168.16.59
-lully	IN	A	192.168.16.161
-```
-
-## Stap 7
 Controle:
 
 ```
 named-checkconf
-named-checkzone -i local dk /var/named/dk
-named-checkzone -i local fr /var/named/fr
-named-checkzone -i local opera.fr /var/named/opera.fr
+named-checkzone -i local orchestral.fr /var/named/orchestral.fr
 ```
 
-## Stap 8
+## Stap 6
 Herstarten:
 
 ```
 systemctl restart named.service
 ```
 
-## Stap 9
+## Stap 7
 Start bind wanneer het systeem opstart:
 
 ```
 systemctl enable named.service
 ```
 
-## Stap 10
+## Stap 8
 Controle:
 
 ```
-dig axfr dk
-dig axfr fr
-dig axfr opera.fr
+dig axfr orchestral.fr
 
+dig delalande.orchestral.fr  # moet 1 answer hebben
 dig vivaldi                  # moet 1 answer hebben
 dig nielsen.dk               # moet 1 answer hebben
 dig couperin.keyboard.fr     # moet 1 answer hebben
 dig campra.opera.fr          # moet 1 answer hebben
 dig lully.opera.fr           # moet 1 answer hebben
-         
-
-dig       
 ```

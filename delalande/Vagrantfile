@@ -1,0 +1,29 @@
+$script = <<-SHELL
+  # Install bind9
+  dnf -y install bind bind-utils
+
+  # Install telnet
+  yum install telnet nmap -y
+
+  # Disable firewall
+  sudo systemctl disable firewalld
+  sudo systemctl stop firewalld
+SHELL
+
+Vagrant.configure("2") do |config|
+
+  config.vm.box = "generic/fedora27"
+
+  # Set hostname
+  config.vm.hostname = "delalande"
+
+  # Set IP-address
+  config.vm.network "private_network", ip: "192.168.16.128"
+
+  config.vm.provider "virtualbox" do |vb|
+    # Set RAM
+    vb.memory = "1024"
+  end
+
+  config.vm.provision "shell", inline: $script
+end

@@ -70,7 +70,7 @@ Dit zal geen impact hebben.
 ; zonebestand root
 $TTL	60
 
-@       IN      SOA     vivaldi. demian.hogent.be. (
+@       IN      SOA     vivaldi. demian.ugent.be. (
                                 2018022101         ; serial YYYYMMDDXX
                                 60	   	   ; refresh
                                 60		   ; retry
@@ -83,6 +83,10 @@ vivaldi          IN  A   192.168.16.155
 
 ; dk afstoten
 dk               IN  NS  nielsen.dk.
+
+; fr afstoten
+fr               IN  NS  nielsen.dk.
+
 nielsen.dk.      IN  A   192.168.16.143
 
 ; een test a-record

@@ -4,8 +4,24 @@
     :construction: Work in Progress! :construction:
 </p>
 
+## Initialisatie
+1. Configureer vivaldi
+2. Configureer nielsen
+3. Configureer delalande
+
+## Controle
+Kopieer het bestand `test/digA.sh` naar een van de DNS-servers.
+Voer daarna volgend commando uit:
+
+```
+bash digA.sh | grep -A1 ANSWER | grep 192.168.16
+```
+
+Dit bevat een lijst van alle DNS-Servers die bereikbaar zijn. Indien niet alle Nameservers gevonden worden, dat klopt er nog iets niet.
+
+
 ## Schema
-![Schema](./.img/schema.png)
+![Schema](./.img/schema.png#2)
 
 ## Debugging
 
