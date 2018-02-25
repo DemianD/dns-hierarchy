@@ -1,4 +1,4 @@
-; zonebestand voor XVIII.at
+; zonebestand voor XVII.fr
 $TTL	60
 
 @   IN  SOA mozart.XVIII.at. demian.hogent.be. (
@@ -15,3 +15,5 @@ opera			    IN	NS	mozart.XVIII.at.
 orchestral		    IN	NS	delalande.orchestral
 sonatas			    IN	NS	delalande.orchestral
 vocal			    IN	NS	bizet.opera.XIX.fr.
+
+delalande.orchestral IN	A	192.168.16.128
