@@ -10,7 +10,7 @@
 3. Configureer delalande
 
 ## Controle
-Kopieer het bestand `digA.sh` naar een van de DNS-servers.
+Kopieer het bestand `test/digA.sh` naar een van de DNS-servers.
 Voer daarna volgend commando uit:
 
 ```
