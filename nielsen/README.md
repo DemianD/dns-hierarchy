@@ -57,7 +57,12 @@ zone "dk" IN {
 zone "fr" IN {
         type master;
         file "fr";
-}
+};
+
+zone "opera.fr" IN {
+        type master;
+        file "opera.fr";
+};
 
 include "/etc/named.rfc1912.zones";
 include "/etc/named.root.key";
@@ -110,41 +115,61 @@ delalande.orchestral        IN  A	192.168.16.128
 ```
 
 ## Stap 6
+/var/named/opera.fr
+
+```
+$TTL	60
+@       IN      SOA     nielsen.dk. demian.hogent.be. (
+                                2018022101         ; serial YYYYMMDDXX
+                                60	   	   ; refresh
+                                60		   ; retry
+                                60		   ; expire
+                                60 )	   	   ; minimum
+
+                NS	nielsen.dk.
+
+campra	IN	A	192.168.16.59
+lully	IN	A	192.168.16.161
+```
+
+## Stap 7
 Controle:
 
 ```
 named-checkconf
 named-checkzone -i local dk /var/named/dk
 named-checkzone -i local fr /var/named/fr
+named-checkzone -i local opera.fr /var/named/opera.fr
 ```
 
-## Stap 7
+## Stap 8
 Herstarten:
 
 ```
 systemctl restart named.service
 ```
 
-## Stap 8
+## Stap 9
 Start bind wanneer het systeem opstart:
 
 ```
 systemctl enable named.service
 ```
 
-## Stap 9
+## Stap 10
 Controle:
 
 ```
 dig axfr dk
 dig axfr fr
+dig axfr opera.fr
 
 dig vivaldi                  # moet 1 answer hebben
 dig nielsen.dk               # moet 1 answer hebben
 dig couperin.keyboard.fr     # moet 1 answer hebben
-
-host vivaldi.
-host test.               
+dig campra.opera.fr          # moet 1 answer hebben
+dig lully.opera.fr           # moet 1 answer hebben
+         
 
 dig       
 ```
