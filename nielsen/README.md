@@ -54,6 +54,11 @@ zone "dk" IN {
         file "dk";
 };
 
+zone "fr" IN {
+        type master;
+        file "fr";
+}
+
 include "/etc/named.rfc1912.zones";
 include "/etc/named.root.key";
 ```
@@ -83,28 +88,51 @@ nielsen	IN	A	192.168.16.143
 ```
 
 ## Stap 5
+/var/named/fr
+
+```
+$TTL	60
+@       IN      SOA     nielsen.dk. demian.hogent.be. (
+                                2018022101         ; serial YYYYMMDDXX
+                                60	   	   ; refresh
+                                60		   ; retry
+                                60		   ; expire
+                                60 )	   	   ; minimum
+
+                            NS	nielsen.dk.
+
+couperin.keyboard           IN	A	192.168.16.74
+
+opera			    IN	NS	nielsen.dk.
+orchestral		    IN	NS	delalande.orchestral
+
+delalande.orchestral        IN  A	192.168.16.128
+```
+
+## Stap 6
 Controle:
 
 ```
 named-checkconf
 named-checkzone -i local dk /var/named/dk
+named-checkzone -i local fr /var/named/fr
 ```
 
-## Stap 6
+## Stap 7
 Herstarten:
 
 ```
 systemctl restart named.service
 ```
 
-## Stap 7
+## Stap 8
 Start bind wanneer het systeem opstart:
 
 ```
 systemctl enable named.service
 ```
 
-## Stap 8
+## Stap 9
 Controle:
 
 ```
