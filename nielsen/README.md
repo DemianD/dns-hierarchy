@@ -137,8 +137,14 @@ Controle:
 
 ```
 dig axfr dk
-dig vivaldi.                   # moet 1 answer hebben
+dig axfr fr
+
+dig vivaldi                  # moet 1 answer hebben
+dig nielsen.dk               # moet 1 answer hebben
+dig couperin.keyboard.fr     # moet 1 answer hebben
 
 host vivaldi.
-host test.                     
+host test.               
+
+dig       
 ```
