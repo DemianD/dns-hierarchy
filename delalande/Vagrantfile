@@ -3,7 +3,7 @@ $script = <<-SHELL
   dnf -y install bind bind-utils
 
   # Install telnet
-  yum install telnet nmap -y
+  yum install telnet net-tools nmap -y
 
   # Disable firewall
   sudo systemctl disable firewalld
